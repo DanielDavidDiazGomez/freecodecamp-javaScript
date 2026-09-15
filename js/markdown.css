@@ -1,0 +1,282 @@
+
+:root {
+  --ink-black: #1c1a17;
+  --rail: #141311;
+  --paper-draft: #f2ecdd;
+  --paper-draft-line: #e2d9c2;
+  --paper-print: #fffdf8;
+  --paper-carbon: #e7e9ee;
+  --paper-carbon-text: #384056;
+  --burgundy: #7a2e2e;
+  --gold: #a6813c;
+  --ink-faint: #7c7568;
+ 
+  --mono: 'IBM Plex Mono', 'Courier New', monospace;
+  --serif: 'Source Serif 4', Georgia, serif;
+}
+ 
+* {
+  box-sizing: border-box;
+}
+ 
+html, body {
+  height: 100%;
+}
+ 
+body {
+  margin: 0;
+  background: var(--rail);
+  color: var(--ink-black);
+  font-family: var(--mono);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+ 
+/* ---------- Masthead ---------- */
+ 
+.masthead {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  padding: 1.6rem clamp(1.2rem, 4vw, 2.6rem) 1.2rem;
+  color: var(--paper-draft);
+  border-bottom: 1px solid #2a2823;
+}
+ 
+.masthead__mark {
+  font-family: var(--serif);
+  font-size: 2.4rem;
+  color: var(--gold);
+  line-height: 1;
+}
+ 
+.masthead__text h1 {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.7rem;
+  letter-spacing: 0.01em;
+}
+ 
+.masthead__text p {
+  margin: 0.2rem 0 0;
+  font-size: 0.82rem;
+  color: #b7ab8f;
+}
+ 
+/* ---------- Desk layout ---------- */
+ 
+.desk {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: #2a2823;
+  padding: 1px;
+}
+ 
+@media (max-width: 900px) {
+  .desk {
+    grid-template-columns: 1fr;
+  }
+}
+ 
+.pane {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+ 
+@media (min-width: 901px) {
+  .pane {
+    height: calc(100vh - 96px);
+  }
+}
+ 
+@media (max-width: 900px) {
+  .pane {
+    height: 60vh;
+    min-height: 320px;
+  }
+}
+ 
+.pane__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 0.85rem 1.1rem;
+  background: var(--rail);
+  color: var(--paper-draft);
+  border-bottom: 1px solid #2a2823;
+}
+ 
+.pane__header h2 {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+ 
+.pane__hint {
+  font-size: 0.7rem;
+  color: #837a67;
+}
+ 
+.pane__body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  margin: 0;
+  border: none;
+}
+ 
+/* ---------- Draft pane (typewriter paper) ---------- */
+ 
+.pane__body--input {
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 27px,
+      var(--paper-draft-line) 28px
+    ),
+    var(--paper-draft);
+  color: var(--ink-black);
+  font-family: var(--mono);
+  font-size: 0.95rem;
+  line-height: 28px;
+  padding: 6px 1.4rem 1.4rem;
+  resize: none;
+  width: 100%;
+}
+ 
+.pane__body--input::placeholder {
+  color: #9a9078;
+}
+ 
+.pane__body--input:focus {
+  outline: 2px solid var(--burgundy);
+  outline-offset: -2px;
+}
+ 
+/* ---------- Print pane (rendered preview) ---------- */
+ 
+.pane__body--preview {
+  background: var(--paper-print);
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: #262220;
+  padding: 1.6rem 1.7rem;
+  box-shadow: inset 0 0 40px rgba(28, 26, 23, 0.04);
+}
+ 
+.pane__body--preview:empty::before {
+  content: "El texto formateado aparecerá aquí.";
+  color: #b0a898;
+  font-style: italic;
+}
+ 
+.pane__body--preview h1,
+.pane__body--preview h2,
+.pane__body--preview h3 {
+  font-family: var(--serif);
+  color: var(--burgundy);
+  line-height: 1.25;
+  margin: 0.9em 0 0.4em;
+}
+ 
+.pane__body--preview h1 { font-size: 1.9rem; }
+.pane__body--preview h2 { font-size: 1.5rem; }
+.pane__body--preview h3 { font-size: 1.2rem; }
+ 
+.pane__body--preview strong {
+  color: var(--ink-black);
+}
+ 
+.pane__body--preview em {
+  color: #423c34;
+}
+ 
+.pane__body--preview blockquote {
+  margin: 0.8em 0;
+  padding: 0.3em 0 0.3em 1em;
+  border-left: 3px solid var(--gold);
+  color: #55503f;
+  font-style: italic;
+}
+ 
+.pane__body--preview a {
+  color: var(--burgundy);
+  text-decoration-color: var(--gold);
+}
+ 
+.pane__body--preview img {
+  max-width: 100%;
+  border: 1px solid #e5ddc9;
+}
+ 
+/* ---------- Carbon pane (raw HTML) ---------- */
+ 
+.pane__body--carbon {
+  background: var(--paper-carbon);
+  color: var(--paper-carbon-text);
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  line-height: 1.7;
+  padding: 1.4rem 1.5rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+ 
+.pane__body--carbon code {
+  font-family: inherit;
+}
+ 
+.pane__body--carbon:has(code:empty)::before {
+  content: "// el HTML generado aparecerá aquí";
+  color: #8890a6;
+  font-style: italic;
+}
+ 
+/* ---------- Scrollbars ---------- */
+ 
+.pane__body::-webkit-scrollbar {
+  width: 10px;
+}
+ 
+.pane__body--input::-webkit-scrollbar-thumb {
+  background: #cabf9f;
+}
+ 
+.pane__body--preview::-webkit-scrollbar-thumb {
+  background: #e0d7c0;
+}
+ 
+.pane__body--carbon::-webkit-scrollbar-thumb {
+  background: #c3c8d6;
+}
+ 
+/* ---------- Entrance ---------- */
+ 
+@media (prefers-reduced-motion: no-preference) {
+  .pane {
+    animation: rise 0.5s ease both;
+  }
+  .pane--draft { animation-delay: 0s; }
+  .pane--print { animation-delay: 0.08s; }
+  .pane--carbon { animation-delay: 0.16s; }
+ 
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
