@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marcado — Convertidor de Markdown a HTML</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ 
+  <header class="masthead">
+    <div class="masthead__mark" aria-hidden="true">§</div>
+    <div class="masthead__text">
+      <h1>Marcado</h1>
+      <p>Un escritorio para pasar texto plano a texto formateado.</p>
+    </div>
+  </header>
+ 
+  <main class="desk">
+ 
+    <section class="pane pane--draft" aria-labelledby="draft-title">
+      <div class="pane__header">
+        <h2 id="draft-title">Borrador</h2>
+        <span class="pane__hint">Escribe en Markdown</span>
+      </div>
+      <textarea
+        id="markdown-input"
+        class="pane__body pane__body--input"
+        spellcheck="false"
+        placeholder="# Un título&#10;&#10;Escribe **negrita**, *cursiva*, &gt; una cita,&#10;[un enlace](https://ejemplo.com) o ![una imagen](https://ejemplo.com/foto.jpg)"
+      ></textarea>
+    </section>
+ 
+    <section class="pane pane--print" aria-labelledby="print-title">
+      <div class="pane__header">
+        <h2 id="print-title">Página impresa</h2>
+        <span class="pane__hint">Así se lee</span>
+      </div>
+      <div id="preview" class="pane__body pane__body--preview"></div>
+    </section>
+ 
+    <section class="pane pane--carbon" aria-labelledby="carbon-title">
+      <div class="pane__header">
+        <h2 id="carbon-title">Copia al carbón</h2>
+        <span class="pane__hint">El HTML generado</span>
+      </div>
+      <pre class="pane__body pane__body--carbon"><code id="html-output"></code></pre>
+    </section>
+ 
+  </main>
+ 
+  <script src="script.js"></script>
+</body>
+</html>
