@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Clima</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Archivo+Black&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+ 
+  <div class="terminal">
+ 
+    <header class="terminal__header">
+      <h1><span class="terminal__dot" aria-hidden="true"></span>Panel de Clima</h1>
+      <p>Consulta las condiciones actuales en seis destinos</p>
+    </header>
+ 
+    <div class="controls">
+      <label for="city-select" class="controls__label">Destino</label>
+      <select id="city-select">
+        <option value=""></option>
+        <option value="new york">New York</option>
+        <option value="los angeles">Los Angeles</option>
+        <option value="chicago">Chicago</option>
+        <option value="paris">Paris</option>
+        <option value="tokyo">Tokyo</option>
+        <option value="london">London</option>
+      </select>
+      <button type="button" id="get-weather-btn">Consultar</button>
+    </div>
+ 
+    <section class="board" aria-label="Resultado del clima">
+ 
+      <div class="board__row board__row--headline">
+        <span class="board__label">Destino</span>
+        <span id="location" class="board__value board__value--location">— — —</span>
+      </div>
+ 
+      <div class="board__row">
+        <span class="board__label">Condición</span>
+        <span class="board__value board__value--condition">
+          <img id="weather-icon" alt="" src="">
+          <span id="weather-main">— — —</span>
+        </span>
+      </div>
+ 
+      <div class="board__row">
+        <span class="board__label">Temperatura</span>
+        <span id="main-temperature" class="board__value">— — —</span>
+      </div>
+ 
+      <div class="board__row">
+        <span class="board__label">Sensación</span>
+        <span id="feels-like" class="board__value">— — —</span>
+      </div>
+ 
+      <div class="board__row">
+        <span class="board__label">Humedad</span>
+        <span id="humidity" class="board__value">— — —</span>
+      </div>
+ 
+      <div class="board__row">
+        <span class="board__label">Viento</span>
+        <span id="wind" class="board__value">— — —</span>
+      </div>
+ 
+      <div class="board__row">
+        <span class="board__label">Ráfaga</span>
+        <span id="wind-gust" class="board__value">— — —</span>
+      </div>
+ 
+    </section>
+ 
+  </div>
+ 
+  <script src="script.js"></script>
+</body>
+</html>
