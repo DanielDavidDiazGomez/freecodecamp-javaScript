@@ -1,0 +1,212 @@
+:root {
+  --navy: #0b1220;
+  --navy-deep: #05070c;
+  --panel: #0f1930;
+  --panel-line: #1b2946;
+  --flap: #050a12;
+  --board-green: #39e88f;
+  --board-green-dim: #1c5c3c;
+  --amber-alert: #ff8a3d;
+  --text-soft: #b9c4d6;
+ 
+  --mono: 'Share Tech Mono', 'Courier New', monospace;
+  --display: 'Archivo Black', sans-serif;
+}
+ 
+* {
+  box-sizing: border-box;
+}
+ 
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.2rem 1.1rem;
+  background: radial-gradient(circle at 50% 0%, var(--panel) 0%, var(--navy) 55%, var(--navy-deep) 100%);
+  font-family: var(--mono);
+  color: var(--text-soft);
+}
+ 
+.terminal {
+  width: min(560px, 100%);
+}
+ 
+/* ---------- Header ---------- */
+ 
+.terminal__header {
+  text-align: center;
+  margin-bottom: 1.4rem;
+}
+ 
+.terminal__header h1 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 1.6rem;
+  letter-spacing: 0.02em;
+  color: #eef2f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+}
+ 
+.terminal__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--board-green);
+  box-shadow: 0 0 10px 2px rgba(57, 232, 143, 0.7);
+}
+ 
+@media (prefers-reduced-motion: no-preference) {
+  .terminal__dot {
+    animation: blink 2.4s ease-in-out infinite;
+  }
+}
+ 
+@keyframes blink {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+ 
+.terminal__header p {
+  margin: 0.3rem 0 0;
+  font-size: 0.82rem;
+  color: #7c8aa3;
+}
+ 
+/* ---------- Controls ---------- */
+ 
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  background: var(--panel);
+  border: 1px solid var(--panel-line);
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1.1rem;
+  flex-wrap: wrap;
+}
+ 
+.controls__label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #7c8aa3;
+}
+ 
+#city-select {
+  flex: 1;
+  min-width: 140px;
+  background: var(--flap);
+  color: var(--board-green);
+  border: 1px solid var(--panel-line);
+  border-radius: 6px;
+  padding: 0.55rem 0.7rem;
+  font-family: var(--mono);
+  font-size: 0.95rem;
+}
+ 
+#get-weather-btn {
+  background: var(--board-green);
+  color: #04160e;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.1rem;
+  font-family: var(--display);
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+ 
+#get-weather-btn:hover {
+  box-shadow: 0 0 14px rgba(57, 232, 143, 0.45);
+}
+ 
+#get-weather-btn:active {
+  transform: translateY(1px);
+}
+ 
+/* ---------- Board ---------- */
+ 
+.board {
+  background: var(--flap);
+  border: 1px solid #000;
+  border-radius: 10px;
+  padding: 0.4rem 1.1rem;
+  box-shadow:
+    inset 0 0 0 1px #12181f,
+    0 20px 40px rgba(0, 0, 0, 0.55);
+}
+ 
+.board__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px dashed #16202f;
+}
+ 
+.board__row:last-child {
+  border-bottom: none;
+}
+ 
+.board__row--headline {
+  padding-top: 0.9rem;
+}
+ 
+.board__label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #5c6c85;
+  flex-shrink: 0;
+}
+ 
+.board__value {
+  font-family: var(--mono);
+  font-size: 1.05rem;
+  color: var(--board-green);
+  letter-spacing: 0.03em;
+  text-shadow: 0 0 6px rgba(57, 232, 143, 0.45);
+  text-align: right;
+}
+ 
+.board__value--location {
+  font-family: var(--display);
+  font-size: 1.3rem;
+}
+ 
+.board__value--condition {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+ 
+#weather-icon {
+  width: 30px;
+  height: 30px;
+}
+ 
+#weather-icon[src=""] {
+  display: none;
+}
+ 
+@media (max-width: 460px) {
+  .board__row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+  }
+  .board__value,
+  .board__value--condition {
+    text-align: left;
+    justify-content: flex-start;
+  }
+}
